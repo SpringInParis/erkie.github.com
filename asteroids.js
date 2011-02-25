@@ -1,7 +1,7 @@
 (function() {
-function Asteroids() {
-	if ( ! window.ASTEROIDS )
-		window.ASTEROIDS = {
+function TrianglesOfDoomAndWoe() {
+	if ( ! window.TRIANGES_OF_DOOM_AND_WOE )
+		window.TRIANGLES_OF_DOOM_AND_WOE = {
 			enemiesKilled: 0
 		};
 	
@@ -179,7 +179,7 @@ function Asteroids() {
 		var h = (document.clientHeight || window.innerHeight);
 		
 		this.container = document.createElement('div');
-		this.container.className = "ASTEROIDSYEAH";
+		this.container.className = "TRIANGLE INVASION!";
 		with ( this.container.style ) {
 			position = "fixed";
 			top = (h / 2 - 250) + "px";
@@ -193,7 +193,7 @@ function Asteroids() {
 		
 		// Create iframe
 		this.iframe = document.createElement('iframe');
-		this.iframe.className = "ASTEROIDSYEAH";
+		this.iframe.className = "TRIANGLE INVASION";
 		this.iframe.width = this.iframe.height = 500;
 		this.iframe.src = highscoreURL;
 		this.iframe.frameBorder = 0;
@@ -324,17 +324,17 @@ function Asteroids() {
 	// things to shoot is everything textual and an element of type not specified in types AND not a navigation element (see further down)
 	function updateEnemyIndex() {
 		for ( var i = 0, enemy; enemy = that.enemies[i]; i++ )
-			removeClass(enemy, "ASTEROIDSYEAHENEMY");
+			removeClass(enemy, "EMOCHILD");
 			
 		var all = document.body.getElementsByTagName('*');
 		that.enemies = [];
 		for ( var i = 0, el; el = all[i]; i++ ) {
-			// elements with className ASTEROIDSYEAH are part of the "game"
+			// elements with className TRIANGLES OF DOOMare part of the "game"
 			if ( indexOf(ignoredTypes, el.tagName.toUpperCase()) == -1 && el.prefix != 'g_vml_' && hasOnlyTextualChildren(el) && el.className != "ASTEROIDSYEAH" && el.offsetHeight > 0 ) {
 				el.aSize = size(el);
 				that.enemies.push(el);
 				
-				addClass(el, "ASTEROIDSYEAHENEMY");
+				addClass(el, "EMOCHILD");
 				
 				// this is only for enemycounting
 				if ( ! el.aAdded ) {
@@ -591,9 +591,9 @@ function Asteroids() {
 		var message = document.createElement('span');
 		message.style.position = 'absolute';
 		message.style.border = '1px solid #999';
-		message.style.background = 'white';
-		message.style.color = "black";
-		message.innerHTML = 'Press Esc to quit';
+		message.style.background = 'FFF0E0';
+		message.style.color = "FFFF33";
+		message.innerHTML = 'Qutting is forbidden. Alternatively try to escape';
 		document.body.appendChild(message);
 		
 		var x = e.pageX || (e.clientX + document.documentElement.scrollLeft);
@@ -813,13 +813,13 @@ function Asteroids() {
 	};
 	
 	var randomParticleColor = function() {
-		return (['red', 'yellow'])[random(0, 1)];
+		return (['red', 'yellow' ,'blue' , 'green' , 'orange' , 'magenta' , 'cyan'])[random(0, 1)];
 	};
 	
 	this.ctx.drawParticles = function(particles) {
 		var oldColor = this.fillStyle;
 		
-		for ( var i = 0; i < particles.length; i++ ) {
+		for ( var i = 0; i < particles.length; i+++++ ) {
 			this.fillStyle = randomParticleColor();
 			this.drawLine(particles[i].pos.x, particles[i].pos.y, particles[i].pos.x - particles[i].dir.x * 10, particles[i].pos.y - particles[i].dir.y * 10);
 		}
@@ -856,7 +856,7 @@ function Asteroids() {
 	} catch ( e ) {}
 	
 	addParticles(this.pos);
-	addClass(document.body, 'ASTEROIDSYEAH');
+	addClass(document.body, 'TRIANGLE INVASION');
 	
 	var isRunning = true;
 	var lastUpdate = new Date().getTime();
@@ -1083,14 +1083,14 @@ function Asteroids() {
 		removeEvent(document, 'keyup', eventKeyup);
 		removeEvent(window, 'resize', eventResize);
 		isRunning = false;
-		removeStylesheet("ASTEROIDSYEAHSTYLES");
-		removeClass(document.body, 'ASTEROIDSYEAH');
+		removeStylesheet("TRIANGLE INVASIONSTYLES");
+		removeClass(document.body, 'TRIANGLE INVASION');
 		this.gameContainer.parentNode.removeChild(this.gameContainer);
 	};
 }
 
-if ( ! window.ASTEROIDSPLAYERS )
-	window.ASTEROIDSPLAYERS = [];
+if ( ! window.TRIANGLESPLAYERS )
+	window.TRIANGLESPLAYERS = [];
 
 if ( window.ActiveXObject && ! document.createElement('canvas').getContext ) {
 	try {
